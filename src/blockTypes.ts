@@ -8,10 +8,10 @@ export enum Orientation {
 export interface BlockType {
   color: colorMap;
   code: string;
-  0: number[][];
-  90: number[][];
-  180: number[][];
-  270: number[][];
+  [Orientation.UP]: number[][];
+  [Orientation.RIGHT]: number[][];
+  [Orientation.DOWN]: number[][];
+  [Orientation.LEFT]: number[][];
 }
 
 export interface Block {
@@ -26,175 +26,175 @@ export interface Block {
 }
 
 export enum colorMap {
-  T = "#800080",
-  I = "#00ffff",
-  O = "#ffff00",
-  S = "#00ff00",
-  L = "#ff7f00",
-  J = "#0000ff",
-  Z = "#ff0000",
+  T = '#800080',
+  I = '#00ffff',
+  O = '#ffff00',
+  S = '#00ff00',
+  L = '#ff7f00',
+  J = '#0000ff',
+  Z = '#ff0000',
 }
 
 export const TBlockType: BlockType = {
   color: colorMap.T,
-  code: "T",
-  0: [
+  code: 'T',
+  [Orientation.UP]: [
     [0, 1, 0],
-    [1, 1, 1],
+    [1, 1, 1]
   ],
-  90: [
+  [Orientation.RIGHT]: [
     [1, 0],
     [1, 1],
-    [1, 0],
+    [1, 0]
   ],
-  180: [
+  [Orientation.DOWN]: [
     [1, 1, 1],
-    [0, 1, 0],
+    [0, 1, 0]
   ],
-  270: [
+  [Orientation.LEFT]: [
     [0, 1],
     [1, 1],
-    [0, 1],
-  ],
-};
+    [0, 1]
+  ]
+}
 
 export const IBlockType: BlockType = {
   color: colorMap.I,
-  code: "I",
-  0: [
+  code: 'I',
+  [Orientation.UP]: [
     [0, 1, 0],
     [0, 1, 0],
     [0, 1, 0],
-    [0, 1, 0],
+    [0, 1, 0]
   ],
-  90: [
+  [Orientation.RIGHT]: [
     [0, 0, 0, 0],
-    [1, 1, 1, 1],
+    [1, 1, 1, 1]
   ],
-  180: [
+  [Orientation.DOWN]: [
     [0, 1, 0],
     [0, 1, 0],
     [0, 1, 0],
-    [0, 1, 0],
+    [0, 1, 0]
   ],
-  270: [
+  [Orientation.LEFT]: [
     [0, 0, 0, 0],
-    [1, 1, 1, 1],
-  ],
-};
+    [1, 1, 1, 1]
+  ]
+}
 
 export const OBlockType: BlockType = {
   color: colorMap.O,
-  code: "O",
-  0: [
+  code: 'O',
+  [Orientation.UP]: [
     [1, 1],
-    [1, 1],
+    [1, 1]
   ],
-  90: [
+  [Orientation.RIGHT]: [
     [1, 1],
-    [1, 1],
+    [1, 1]
   ],
-  180: [
+  [Orientation.DOWN]: [
     [1, 1],
-    [1, 1],
+    [1, 1]
   ],
-  270: [
+  [Orientation.LEFT]: [
     [1, 1],
-    [1, 1],
-  ],
-};
+    [1, 1]
+  ]
+}
 
 export const SBlockType: BlockType = {
   color: colorMap.S,
-  code: "S",
-  0: [
+  code: 'S',
+  [Orientation.UP]: [
     [0, 1, 1],
-    [1, 1, 0],
+    [1, 1, 0]
   ],
-  90: [
+  [Orientation.RIGHT]: [
     [1, 0],
     [1, 1],
-    [0, 1],
+    [0, 1]
   ],
-  180: [
+  [Orientation.DOWN]: [
     [0, 1, 1],
-    [1, 1, 0],
+    [1, 1, 0]
   ],
-  270: [
+  [Orientation.LEFT]: [
     [1, 0],
     [1, 1],
-    [0, 1],
-  ],
-};
+    [0, 1]
+  ]
+}
 
 export const ZBlockType: BlockType = {
   color: colorMap.Z,
-  code: "Z",
-  0: [
+  code: 'Z',
+  [Orientation.UP]: [
     [1, 1, 0],
-    [0, 1, 1],
+    [0, 1, 1]
   ],
-  90: [
+  [Orientation.RIGHT]: [
     [0, 1],
     [1, 1],
-    [1, 0],
+    [1, 0]
   ],
-  180: [
+  [Orientation.DOWN]: [
     [1, 1, 0],
-    [0, 1, 1],
+    [0, 1, 1]
   ],
-  270: [
+  [Orientation.LEFT]: [
     [0, 1],
     [1, 1],
-    [1, 0],
-  ],
-};
+    [1, 0]
+  ]
+}
 
 export const JBlockType: BlockType = {
   color: colorMap.J,
-  code: "J",
-  0: [
+  code: 'J',
+  [Orientation.UP]: [
     [1, 0, 0],
-    [1, 1, 1],
+    [1, 1, 1]
   ],
-  90: [
+  [Orientation.RIGHT]: [
     [1, 1],
     [1, 0],
-    [1, 0],
+    [1, 0]
   ],
-  180: [
+  [Orientation.DOWN]: [
     [1, 1, 1],
-    [0, 0, 1],
+    [0, 0, 1]
   ],
-  270: [
+  [Orientation.LEFT]: [
     [0, 1],
     [0, 1],
-    [1, 1],
-  ],
-};
+    [1, 1]
+  ]
+}
 
 export const LBlockType: BlockType = {
   color: colorMap.L,
-  code: "L",
-  0: [
+  code: 'L',
+  [Orientation.UP]: [
     [0, 0, 1],
-    [1, 1, 1],
+    [1, 1, 1]
   ],
-  90: [
+  [Orientation.RIGHT]: [
     [1, 0],
     [1, 0],
-    [1, 1],
+    [1, 1]
   ],
-  180: [
+  [Orientation.DOWN]: [
     [1, 1, 1],
-    [1, 0, 0],
+    [1, 0, 0]
   ],
-  270: [
+  [Orientation.LEFT]: [
     [1, 1],
     [0, 1],
-    [0, 1],
-  ],
-};
+    [0, 1]
+  ]
+}
 
 export const blockTypes = [
   TBlockType,
@@ -203,5 +203,5 @@ export const blockTypes = [
   SBlockType,
   ZBlockType,
   JBlockType,
-  LBlockType,
-];
+  LBlockType
+]

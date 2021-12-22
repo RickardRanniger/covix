@@ -1,7 +1,7 @@
 import { Block, blockTypes, TBlockType } from "./blockTypes";
 import { Tile } from "./matrix";
 
-let canvas = document.createElement("canvas");
+const canvas = document.createElement("canvas");
 
 const degrees: number[] = [0, 90, 180, 270];
 
@@ -23,11 +23,11 @@ type Board = Tile[][];
 const board: Board = [];
 initializeboard(board);
 
-const drawBlock = (block: Block, fixed: boolean = false) => {
+const drawBlock = (block: Block, fixed = false) => {
   for (let yy = 0; yy < block.blockType[block.rotation].length; yy++) {
     for (let xx = 0; xx < block.blockType[block.rotation][yy].length; xx++) {
       if (block.blockType[block.rotation][yy][xx] === 1) {
-        //board[yy + block.position.y][xx + block.position.x] =
+        // board[yy + block.position.y][xx + block.position.x] =
         // block.blockType[block.rotation][yy][xx] === 1
         //   ? new Tile(
         //       xx,
@@ -35,7 +35,7 @@ const drawBlock = (block: Block, fixed: boolean = false) => {
         //       fixed ? "static" : "active",
         //       block.blockType.color
         //     )
-        //: null;
+        // : null;
       }
     }
   }
@@ -44,8 +44,9 @@ const drawBlock = (block: Block, fixed: boolean = false) => {
 const clearBoard = () => {
   for (let yy = 0; yy < board.length; yy++) {
     for (let xx = 0; xx < board[yy].length; xx++) {
-      if (board[yy][xx] && board[yy][xx].type === "active")
+      if (board[yy][xx] && board[yy][xx].type === "active") {
         board[yy][xx] = null;
+      }
     }
   }
 };
@@ -66,15 +67,17 @@ document.body.appendChild(output);
 document.body.appendChild(canvas);
 document.body.style.backgroundColor = "gray";
 
-let context = canvas?.getContext("2d");
+const context = canvas?.getContext("2d");
 
-var frame = 0;
-var x = 0;
-var y = 0;
+let frame = 0;
+const x = 0;
+const y = 0;
 const s = gridSize;
-var id: number = 0;
-var endLoop: boolean = false;
-var speed = 500;
+let id = 0;
+const endLoop = false;
+let speed = 500;
+
+console.log("sdfsd");
 
 const drawBoard = () => {
   for (let yy = 0; yy < board.length; yy++) {
@@ -101,9 +104,9 @@ addEventListener("keypress", (e) => {
   window.cancelAnimationFrame(id);
 });
 
-var lastTs = 0;
+let lastTs = 0;
 
-var lastBlock: Block = null;
+const lastBlock: Block = null;
 
 const doesBlockFit = (
   block: Block,
@@ -231,14 +234,14 @@ document.onkeydown = (e: KeyboardEvent) => {
       console.log(board);
       break;
   }
-  //console.log(x, y);
+  // console.log(x, y);
 };
 
 eventLoop(null);
 function initializeboard(board: Board) {
-  for (var by = 0; by < boardHeight; by++) {
+  for (let by = 0; by < boardHeight; by++) {
     board[by] = [];
-    for (var bx = 0; bx < boardWidth; bx++) {
+    for (let bx = 0; bx < boardWidth; bx++) {
       board[by][bx] = null;
     }
   }
