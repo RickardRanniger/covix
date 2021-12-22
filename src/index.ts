@@ -135,7 +135,7 @@ const eventLoop = (ts: any | null) => {
     context!.clearRect(0, 0, canvas.width, canvas.height);
     drawBlock(block);
     drawBoard();
-    output.textContent = "Frame: " + frame.toString();
+    output.textContent = "Frame Count: " + frame.toString();
     frame++;
     if (ts - lastTs > speed) {
       lastTs = ts;
