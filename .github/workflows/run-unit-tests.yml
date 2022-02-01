@@ -14,8 +14,8 @@ jobs:
         run: npm run build
       - name: Run tests
         run: npm run test -- --coverage
-      - name: Deploy
-        uses: actions/ssh-action@master
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
