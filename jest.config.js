@@ -3,8 +3,9 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   preset: "ts-jest",
-  testEnvironment: "node",
-  coverageReporters: ["html"],
-  collectCoverage: true,
+  testEnvironment: "jsdom",
+  coverageReporters: ["json-summary"],
+  collectCoverage: false,
   coverageDirectory: "docs/coverage",
+  collectCoverageFrom: ["src/**/*.ts"],
 };

@@ -15,6 +15,12 @@ const config = {
   devServer: {
     open: true,
     host: "localhost",
+    client: {
+      progress: true,
+    },
+    static: {
+      directory: path.resolve(__dirname, "public"),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

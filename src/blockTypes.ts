@@ -1,4 +1,4 @@
-export enum Orientation {
+export enum Rotation {
   UP = 0,
   RIGHT = 90,
   DOWN = 180,
@@ -8,10 +8,10 @@ export enum Orientation {
 export interface BlockType {
   color: colorMap;
   code: string;
-  [Orientation.UP]: number[][];
-  [Orientation.RIGHT]: number[][];
-  [Orientation.DOWN]: number[][];
-  [Orientation.LEFT]: number[][];
+  [Rotation.UP]: number[][];
+  [Rotation.RIGHT]: number[][];
+  [Rotation.DOWN]: number[][];
+  [Rotation.LEFT]: number[][];
 }
 
 export interface Block {
@@ -20,181 +20,181 @@ export interface Block {
     y: number;
   };
 
-  rotation: Orientation;
+  rotation: Rotation;
 
   blockType: BlockType;
 }
 
 export enum colorMap {
-  T = '#800080',
-  I = '#00ffff',
-  O = '#ffff00',
-  S = '#00ff00',
-  L = '#ff7f00',
-  J = '#0000ff',
-  Z = '#ff0000',
+  T = "#800080",
+  I = "#00ffff",
+  O = "#ffff00",
+  S = "#00ff00",
+  L = "#ff7f00",
+  J = "#0000ff",
+  Z = "#ff0000",
 }
 
 export const TBlockType: BlockType = {
   color: colorMap.T,
-  code: 'T',
-  [Orientation.UP]: [
+  code: "T",
+  [Rotation.UP]: [
     [0, 1, 0],
-    [1, 1, 1]
+    [1, 1, 1],
   ],
-  [Orientation.RIGHT]: [
+  [Rotation.RIGHT]: [
     [1, 0],
     [1, 1],
-    [1, 0]
+    [1, 0],
   ],
-  [Orientation.DOWN]: [
+  [Rotation.DOWN]: [
     [1, 1, 1],
-    [0, 1, 0]
+    [0, 1, 0],
   ],
-  [Orientation.LEFT]: [
+  [Rotation.LEFT]: [
     [0, 1],
     [1, 1],
-    [0, 1]
-  ]
-}
+    [0, 1],
+  ],
+};
 
 export const IBlockType: BlockType = {
   color: colorMap.I,
-  code: 'I',
-  [Orientation.UP]: [
+  code: "I",
+  [Rotation.UP]: [
     [0, 1, 0],
     [0, 1, 0],
     [0, 1, 0],
-    [0, 1, 0]
+    [0, 1, 0],
   ],
-  [Orientation.RIGHT]: [
+  [Rotation.RIGHT]: [
     [0, 0, 0, 0],
-    [1, 1, 1, 1]
+    [1, 1, 1, 1],
   ],
-  [Orientation.DOWN]: [
+  [Rotation.DOWN]: [
     [0, 1, 0],
     [0, 1, 0],
     [0, 1, 0],
-    [0, 1, 0]
+    [0, 1, 0],
   ],
-  [Orientation.LEFT]: [
+  [Rotation.LEFT]: [
     [0, 0, 0, 0],
-    [1, 1, 1, 1]
-  ]
-}
+    [1, 1, 1, 1],
+  ],
+};
 
 export const OBlockType: BlockType = {
   color: colorMap.O,
-  code: 'O',
-  [Orientation.UP]: [
+  code: "O",
+  [Rotation.UP]: [
     [1, 1],
-    [1, 1]
+    [1, 1],
   ],
-  [Orientation.RIGHT]: [
+  [Rotation.RIGHT]: [
     [1, 1],
-    [1, 1]
+    [1, 1],
   ],
-  [Orientation.DOWN]: [
+  [Rotation.DOWN]: [
     [1, 1],
-    [1, 1]
+    [1, 1],
   ],
-  [Orientation.LEFT]: [
+  [Rotation.LEFT]: [
     [1, 1],
-    [1, 1]
-  ]
-}
+    [1, 1],
+  ],
+};
 
 export const SBlockType: BlockType = {
   color: colorMap.S,
-  code: 'S',
-  [Orientation.UP]: [
+  code: "S",
+  [Rotation.UP]: [
     [0, 1, 1],
-    [1, 1, 0]
+    [1, 1, 0],
   ],
-  [Orientation.RIGHT]: [
+  [Rotation.RIGHT]: [
     [1, 0],
     [1, 1],
-    [0, 1]
+    [0, 1],
   ],
-  [Orientation.DOWN]: [
+  [Rotation.DOWN]: [
     [0, 1, 1],
-    [1, 1, 0]
+    [1, 1, 0],
   ],
-  [Orientation.LEFT]: [
+  [Rotation.LEFT]: [
     [1, 0],
     [1, 1],
-    [0, 1]
-  ]
-}
+    [0, 1],
+  ],
+};
 
 export const ZBlockType: BlockType = {
   color: colorMap.Z,
-  code: 'Z',
-  [Orientation.UP]: [
+  code: "Z",
+  [Rotation.UP]: [
     [1, 1, 0],
-    [0, 1, 1]
+    [0, 1, 1],
   ],
-  [Orientation.RIGHT]: [
+  [Rotation.RIGHT]: [
     [0, 1],
     [1, 1],
-    [1, 0]
+    [1, 0],
   ],
-  [Orientation.DOWN]: [
+  [Rotation.DOWN]: [
     [1, 1, 0],
-    [0, 1, 1]
+    [0, 1, 1],
   ],
-  [Orientation.LEFT]: [
+  [Rotation.LEFT]: [
     [0, 1],
     [1, 1],
-    [1, 0]
-  ]
-}
+    [1, 0],
+  ],
+};
 
 export const JBlockType: BlockType = {
   color: colorMap.J,
-  code: 'J',
-  [Orientation.UP]: [
+  code: "J",
+  [Rotation.UP]: [
     [1, 0, 0],
-    [1, 1, 1]
+    [1, 1, 1],
   ],
-  [Orientation.RIGHT]: [
+  [Rotation.RIGHT]: [
     [1, 1],
     [1, 0],
-    [1, 0]
+    [1, 0],
   ],
-  [Orientation.DOWN]: [
+  [Rotation.DOWN]: [
     [1, 1, 1],
-    [0, 0, 1]
+    [0, 0, 1],
   ],
-  [Orientation.LEFT]: [
+  [Rotation.LEFT]: [
     [0, 1],
     [0, 1],
-    [1, 1]
-  ]
-}
+    [1, 1],
+  ],
+};
 
 export const LBlockType: BlockType = {
   color: colorMap.L,
-  code: 'L',
-  [Orientation.UP]: [
+  code: "L",
+  [Rotation.UP]: [
     [0, 0, 1],
-    [1, 1, 1]
-  ],
-  [Orientation.RIGHT]: [
-    [1, 0],
-    [1, 0],
-    [1, 1]
-  ],
-  [Orientation.DOWN]: [
     [1, 1, 1],
-    [1, 0, 0]
   ],
-  [Orientation.LEFT]: [
+  [Rotation.RIGHT]: [
+    [1, 0],
+    [1, 0],
+    [1, 1],
+  ],
+  [Rotation.DOWN]: [
+    [1, 1, 1],
+    [1, 0, 0],
+  ],
+  [Rotation.LEFT]: [
     [1, 1],
     [0, 1],
-    [0, 1]
-  ]
-}
+    [0, 1],
+  ],
+};
 
 export const blockTypes = [
   TBlockType,
@@ -203,5 +203,5 @@ export const blockTypes = [
   SBlockType,
   ZBlockType,
   JBlockType,
-  LBlockType
-]
+  LBlockType,
+];
