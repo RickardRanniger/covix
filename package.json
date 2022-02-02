@@ -5,12 +5,12 @@
   "version": "1.0.0",
   "description": "A Tetris clone for educational purpose",
   "main": "index.js",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "copy-webpack-plugin": "^10.2.4",
     "install": "^0.13.0",
     "npm": "^8.3.2",
-    "standardized-audio-context-mock": "^9.0.0"
-  },
-  "devDependencies": {
+    "standardized-audio-context-mock": "^9.0.0",
     "@types/jest": "^27.0.3",
     "@types/requirejs": "^2.1.34",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
