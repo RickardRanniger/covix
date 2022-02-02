@@ -12,10 +12,21 @@ jobs:
         run: npm i -g yarn
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: Build
-        run: yarn build
       - name: Run tests
         run: yarn test:ci
+      - name: Build
+        run: yarn build
+      - name: Create artifact
+        run: tar czvf dist.tar.gz dist
+      - name: SCP Command to Transfer Files
+        uses: appleboy/scp-action@v0.1.2
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER}}
+          password: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          source: "dist.tar.gz"
+          target: "dist.tar.gz"
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v0.1.4
         with:
