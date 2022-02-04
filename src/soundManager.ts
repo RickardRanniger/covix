@@ -9,11 +9,25 @@ export default class SoundManager {
     gameOver: "assets/gameOver.wav",
   };
 
+  musicTrackSource: AudioBufferSourceNode;
+
   load = async (filename: string) => {
     const response = await fetch(filename);
     const arrayBuffer = await response.arrayBuffer();
     const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
     return audioBuffer;
+  };
+
+  pause = async () => {
+    this.audioContext.suspend();
+  };
+
+  resume = async () => {
+    this.audioContext.resume();
+  };
+
+  stop = async () => {
+    this.musicTrackSource.stop();
   };
 
   init = async () => {
@@ -28,5 +42,13 @@ export default class SoundManager {
     trackSource.connect(this.audioContext.destination);
     trackSource.loop = loop;
     trackSource.start();
+  };
+
+  playMusic = (sound: string): void => {
+    this.musicTrackSource = this.audioContext.createBufferSource();
+    this.musicTrackSource.buffer = this.buffers[sound];
+    this.musicTrackSource.connect(this.audioContext.destination);
+    this.musicTrackSource.loop = true;
+    this.musicTrackSource.start();
   };
 }

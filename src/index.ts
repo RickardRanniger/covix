@@ -3,34 +3,71 @@ import { Block, blockTypes, Rotation, IBlockType } from "./blockTypes";
 import { Matrix } from "./matrix";
 import { Renderer } from "./renderer";
 import SoundManager from "./soundManager";
-
+import "./style.css";
 async function init() {
   const sm = new SoundManager();
   sm.init();
 
   const matrix = new Matrix(10, 20);
 
-  const block: Block = {
-    blockType: IBlockType,
+  let block: Block = {
+    blockType: blockTypes[Math.floor(Math.random() * blockTypes.length)],
     position: {
-      x: 0,
+      x: matrix.width / 2 - 1,
       y: 0,
     },
     rotation: Rotation.UP,
   };
 
-  const startButtonHandler = async () => {
-    sm.play("music", true);
-    gameLoop(window.performance.now());
+  const pauseGameHandler = () => {
+    button.textContent = "Resume";
+    button.onclick = resumeGameHandler;
+    breakLoop = true;
+    sm.pause();
   };
 
-  const button = document.createElement("button");
-  button.textContent = "Start game";
-  button.style.display = "block ";
+  const resumeGameHandler = () => {
+    button.textContent = "Pause";
+    button.onclick = pauseGameHandler;
+    breakLoop = false;
+    gameLoop(window.performance.now());
+    sm.resume();
+  };
+
+  const gameOverHandler = () => {
+    sm.stop();
+    sm.play("gameOver");
+    button.textContent = "Start Game";
+    button.onclick = startButtonHandler;
+    breakLoop = true;
+  };
+
+  const startButtonHandler = async () => {
+    renderer.clear();
+    matrix.clear();
+    resetScore();
+    block = {
+      blockType: blockTypes[Math.floor(Math.random() * blockTypes.length)],
+      position: {
+        x: matrix.width / 2 - 1,
+        y: 0,
+      },
+      rotation: Rotation.UP,
+    };
+    matrix.setActiveBlock(block);
+    renderer.drawCurrent();
+    button.textContent = "Pause";
+    button.onclick = pauseGameHandler;
+    sm.init();
+    sm.playMusic("music");
+    breakLoop = false;
+    setTimeout(() => {
+      gameLoop(window.performance.now());
+    }, 1000);
+  };
+
+  const button = document.getElementById("startButton") as HTMLButtonElement;
   button.onclick = startButtonHandler;
-
-  document.body.appendChild(button);
-
   matrix.setActiveBlock(block);
 
   const renderer = new Renderer(matrix);
@@ -39,10 +76,21 @@ async function init() {
   let speedY = 1;
   let moveRight = false;
   let moveLeft = false;
+  let score = 0;
+
+  const addScore = (value: number) => {
+    score = score + value;
+    document.getElementById("scoreValue").innerHTML = score.toString();
+  };
+
+  const resetScore = () => {
+    score = 0;
+    document.getElementById("scoreValue").innerHTML = score.toString();
+  };
 
   let breakLoop = false;
   window.addEventListener("keydown", (ev: KeyboardEvent) => {
-    ev.preventDefault();
+    //ev.preventDefault();
     switch (ev.key) {
       case "ArrowRight":
         moveRight = true;
@@ -51,14 +99,12 @@ async function init() {
         moveLeft = true;
         break;
       case "ArrowUp":
+      case " ":
         sm.play("rotate");
         matrix.rotate();
         break;
       case "ArrowDown":
         speedY = 0.0333333;
-        break;
-      case " ":
-        breakLoop = true;
         break;
     }
   });
@@ -88,11 +134,30 @@ async function init() {
     lastTs = ts;
 
     if (moveYTimer >= speedY) {
+      if (speedY === 0.0333333) {
+        addScore(1);
+      }
       if (!matrix.moveDY(1)) {
         sm.play("drop");
         matrix.lockDown();
-        if (matrix.handleRows()) {
-          sm.play("clearRows");
+        const clearedRows = matrix.handleRows();
+        switch (clearedRows) {
+          case 1:
+            addScore(100);
+            sm.play("clearRows");
+            break;
+          case 2:
+            addScore(400);
+            sm.play("clearRows");
+            break;
+          case 3:
+            addScore(900);
+            sm.play("clearRows");
+            break;
+          case 4:
+            addScore(2000);
+            sm.play("clearRows");
+            break;
         }
         block.position.x = 0;
         block.position.y = 0;
@@ -101,7 +166,7 @@ async function init() {
           blockTypes[Math.floor(Math.random() * blockTypes.length)];
 
         if (matrix.isCollision(block, 0, 0, Rotation.UP)) {
-          breakLoop = true;
+          gameOverHandler();
         } else {
           matrix.setActiveBlock(block);
         }
@@ -121,10 +186,6 @@ async function init() {
     renderer.clear();
     renderer.drawCurrent();
   };
-
-  //gameLoop(window.performance.now());
-
-  renderer.drawCurrent();
 }
 
 init();

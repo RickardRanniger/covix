@@ -154,16 +154,16 @@ export class Matrix {
     }
   };
 
-  handleRows = (): boolean => {
-    let returnValue = false;
+  handleRows = (): number => {
+    let noOfRows = 0;
     this.processMatrix(null, (y) => {
       if (this.tiles[y].every((tile) => tile?.type === TileType.STATIC)) {
         this.tiles.splice(y, 1);
         this.tiles.unshift(new Array(this.width).fill(null));
-        returnValue = true;
+        noOfRows++;
       }
     });
-    return returnValue;
+    return noOfRows;
   };
 
   removeBlock = () => {

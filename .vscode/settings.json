@@ -8,9 +8,7 @@
     "source.fixAll.eslint": true,
     //"source.organizeImports": true,
   },
-  "eslint.options": {
-    "ignorePattern": "webpack.config.js"
-  },
+  "eslint.options": {},
   "prettier.enable": true,
   "[typescript]": {
     "editor.formatOnSave": true,

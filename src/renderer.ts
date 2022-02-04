@@ -7,12 +7,11 @@ export class Renderer {
 
   constructor(matrix: Matrix) {
     this.matrix = matrix;
-    this.canvas = document.createElement("canvas");
+    this.canvas = document.getElementById("scene") as HTMLCanvasElement;
     this.canvas.width = matrix.width * 32;
     this.canvas.height = matrix.height * 32;
     this.canvas.style.backgroundColor = "black";
     this.context = this.canvas.getContext("2d");
-    document.body.appendChild(this.canvas);
   }
 
   drawCurrent = () => {
