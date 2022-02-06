@@ -11,7 +11,7 @@ button {
 }
 
 html {
-  font-family: "Press Start 2P", cursive;
+  font-family: "Press Start 2P";
   font-size: 12px;
 }
 
@@ -23,6 +23,17 @@ body {
 #scene {
   width: 320px;
   /* border: 1px solid white; */
+}
+
+#credits {
+  display: flex;
+  color: white;
+  margin: auto;
+}
+
+#container {
+  flex-direction: column;
+  display: flex;
 }
 
 #wrapper {
@@ -47,12 +58,14 @@ body {
   text-align: center;
   margin-bottom: 20px;
   margin-top: 20px;
+  line-height: 2rem;
 }
 
 #scoreValue {
   color: white;
   text-align: center;
   font-size: 3rem;
+  padding: 3rem;
 }
 
 #startButton {
