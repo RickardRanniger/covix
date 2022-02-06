@@ -77,10 +77,18 @@ async function init() {
   let moveRight = false;
   let moveLeft = false;
   let score = 0;
+  let level = 1;
+
+  const getSpeed = () => speedY - (0.1 * level - 1);
 
   const addScore = (value: number) => {
     score = score + value;
     document.getElementById("scoreValue").innerHTML = score.toString();
+  };
+
+  const increaseLevel = () => {
+    level++;
+    document.getElementById("levelValue").innerHTML = level.toString();
   };
 
   const resetScore = () => {
@@ -113,7 +121,7 @@ async function init() {
     ev.preventDefault();
     switch (ev.key) {
       case "ArrowDown":
-        speedY = 1;
+        speedY = getSpeed();
         break;
       case "ArrowRight":
         moveRight = false;
@@ -157,8 +165,15 @@ async function init() {
           case 4:
             addScore(2000);
             sm.play("clearRows");
+            sm.play("fourLines");
             break;
         }
+
+        if (score > level * 1000) {
+          increaseLevel();
+          sm.play("levelUp");
+        }
+
         block.position.x = 0;
         block.position.y = 0;
         block.rotation = Rotation.UP;

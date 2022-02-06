@@ -7,6 +7,8 @@ export default class SoundManager {
     clearRows: "assets/clear.wav",
     drop: "assets/drop.wav",
     gameOver: "assets/gameOver.wav",
+    levelUp: "assets/levelUp.wav",
+    fourLines: "assets/fourLines.wav",
   };
 
   musicTrackSource: AudioBufferSourceNode;
