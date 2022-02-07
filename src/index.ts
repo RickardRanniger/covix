@@ -46,6 +46,7 @@ async function init() {
     renderer.clear();
     matrix.clear();
     resetScore();
+    resetLevel();
     block = {
       blockType: blockTypes[Math.floor(Math.random() * blockTypes.length)],
       position: {
@@ -78,6 +79,8 @@ async function init() {
   let moveLeft = false;
   let score = 0;
   let level = 1;
+  let moveYTimer = 0;
+  let moveXTimer = 0;
 
   const getSpeed = () => speedY - (0.1 * level - 1);
 
@@ -88,6 +91,12 @@ async function init() {
 
   const increaseLevel = () => {
     level++;
+    document.getElementById("levelValue").innerHTML = level.toString();
+  };
+
+  const resetLevel = () => {
+    level = 1;
+    speedY = 1;
     document.getElementById("levelValue").innerHTML = level.toString();
   };
 
@@ -131,9 +140,6 @@ async function init() {
         break;
     }
   });
-
-  let moveYTimer = 0;
-  let moveXTimer = 0;
 
   const gameLoop = (ts: DOMHighResTimeStamp = 0) => {
     if (!breakLoop) window.requestAnimationFrame(gameLoop);

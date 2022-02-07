@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  background-color: darkblue;
+  background-color: darkslategrey;
   justify-content: center;
 }
 
@@ -51,7 +51,7 @@ body {
 #scoreboard {
   flex: 1;
   display: flex;
-  background-color: red;
+  background-color: chocolate;
   flex-direction: column;
 }
 
