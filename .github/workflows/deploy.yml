@@ -1,7 +1,7 @@
-name: run-unit-tests
+name: deploy
 on: [push]
 jobs:
-  rununittests:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -35,3 +35,4 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: bash deploy-server.sh
+
