@@ -11,13 +11,14 @@ Play the [Demo](https://ranniger.se/projects/covix/index.html) 🕹
 
 Use arrow keys to move pieces.
 
-| Key   | Action     |
-| ----- | ---------- |
-| Up    | Rotate     |
-| Down  | Drop       |
-| Left  | Move left  |
+|   Key | Action     |
+| ----: | :--------- |
+|    Up | Rotate     |
+|  Down | Drop       |
+|  Left | Move left  |
 | Right | Move right |
 
 \
 \
 Music made by [Brinkenstein](https://soundcloud.com/brinkenstein_com)
+
